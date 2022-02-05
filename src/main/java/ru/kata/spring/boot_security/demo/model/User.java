@@ -19,7 +19,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(unique = true)//уникальность имен
     @NotEmpty(message = "not be empty")
     @Size(min = 1, max = 45, message = "length 1 to 45 signs")
     private String username;

@@ -1,11 +1,45 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Security Example</title>
+    <meta charset="UTF-8">
+    <title>Index of pages</title>
+    <style>
+        table {
+            border-width: medium;
+            width: auto; /* Ширина таблицы */
+            background: white; /* Цвет фона таблицы */
+            color: black; /* Цвет текста */
+            border-spacing: 1px; /* Расстояние между ячейками */
+        }
+        td, th {
+            background: gray; /* Цвет фона ячеек */
+            padding: 5px; /* Поля вокруг текста */
+        }
+    </style>
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
 
+<table {border="1"}>
 
+    <tr>
+        <th>ID</th>
+        <th>USERNAME</th>
+        <th>PASSWORD</th>
+    </tr>
+        <tr>
+            <td th:text="${userPage.getId()}"/>
+            <td th:text="${userPage.getUsername()}"/>
+            <td th:text="${userPage.getPassword()}"/>
+
+        </tr>
+    </div>
+</table>
+<br/>
+<hr/>
+<!--<form th:action="@{/new}">-->
+<!--    <button type="submit">Create new User</button>-->
+    <!--    <p><strong>strong text</strong></p>-->
+    <!--    <input name="name_of_field" value="name"/>-->
+</form>
 </body>
 </html>

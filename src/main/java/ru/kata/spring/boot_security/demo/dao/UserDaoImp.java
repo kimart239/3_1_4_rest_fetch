@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.model.User;
 
@@ -15,7 +13,6 @@ public class UserDaoImp implements UserDao{
 
     @PersistenceContext
     private EntityManager em;
-
 
     @Override
     public void addUser(User user) {

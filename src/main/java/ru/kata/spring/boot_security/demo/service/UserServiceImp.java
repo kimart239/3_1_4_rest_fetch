@@ -4,22 +4,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
-public class UserServiceImp implements UserService, UserDetailsService {
+public class UserServiceImp implements UserService {
+
+
+    private UserDao userDao;
+    private PasswordEncoder passwordEncoder;
+    private RoleService roleService;
 
     @Autowired
-    private UserDao userDao;
+    public UserServiceImp(UserDao userDao, PasswordEncoder passwordEncoder, RoleService roleService) {
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
+        this.roleService = roleService;
+    }
 
     @Override
     @Transactional
     public void addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.addUser(user);
     }
 
@@ -42,6 +57,7 @@ public class UserServiceImp implements UserService, UserDetailsService {
     @Override
     @Transactional
     public void update (long id,User userUpdated) {
+        userUpdated.setPassword(passwordEncoder.encode(userUpdated.getPassword()));
         userDao.update(id, userUpdated);
     }
 
@@ -51,7 +67,12 @@ public class UserServiceImp implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return User.fromUser(userDao.findByUsername(username));
+    public Set<Role> getSetOfRoles(List<String> role_string) {
+        Set<Role> roles = new HashSet<>();
+        for (String roleOfName : role_string) {
+            roles.add(roleService.findByRole(roleOfName));
+        }
+        return roles;
     }
+
 }

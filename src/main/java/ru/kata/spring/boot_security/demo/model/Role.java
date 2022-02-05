@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Collection;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +19,11 @@ public class Role implements GrantedAuthority {
     private long id;
 
     @Column
-    @NotEmpty
     private String role;
+
+    @ManyToMany(mappedBy = "roles")
+    private Collection<User> users;
+
 
     public Role(String role) {
         this.role = role;
