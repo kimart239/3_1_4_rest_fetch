@@ -1,9 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,9 +17,9 @@ import java.util.Set;
 public class UserServiceImp implements UserService {
 
 
-    private UserDao userDao;
-    private PasswordEncoder passwordEncoder;
-    private RoleService roleService;
+    private final UserDao userDao;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
 
     @Autowired
     public UserServiceImp(UserDao userDao, PasswordEncoder passwordEncoder, RoleService roleService) {

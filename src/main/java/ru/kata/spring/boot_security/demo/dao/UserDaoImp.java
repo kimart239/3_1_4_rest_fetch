@@ -42,7 +42,7 @@ public class UserDaoImp implements UserDao{
         User userForUpdate = findById(id);
         userForUpdate.setUsername(userUpdated.getUsername());
         userForUpdate.setPassword(userUpdated.getPassword());
-        userForUpdate.setActive(userUpdated.isActive());
+        userForUpdate.setRoles(userUpdated.getRoles());
         em.merge(userForUpdate);
     }
 

@@ -17,18 +17,15 @@
     <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
     <br/>
     <br/>
-   <label for="active">Enter Status:</label>
-    <select name="active" id="active" th:field="*{active}">
-        <option value="true">ACTIVE</option>
-        <option value="false">BANNED</option>
-    </select>
-    <br/>
-    <br/>
     <p>Enter Roles:</p>
-    <input type="checkbox" name="role_authorities" th:each="role :${allRoles}" th:text="${role.name}" th:value="${role.name}"/>
+    <input type="checkbox" name="role_authorities" th:each="role : ${allRoles}" th:text="${role.role}" th:value="${role.role}"/>
 
     <input type="submit" value="Create"/>
 
 </form>
+<form th:action="@{/logout}" th:method="POST">
+    <button type="submit">LOGOUT</button>
+</form>
+
 </body>
 </html>

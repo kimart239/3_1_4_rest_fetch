@@ -24,14 +24,12 @@
     <tr>
         <th>USERNAME</th>
         <th>PASSWORD</th>
-        <th>ACTIVE</th>
         <th>ACTION</th>
     </tr>
     <div th:each="user:${userList}">
         <tr>
             <td th:text="${user.getUsername()}"/>
             <td th:text="${user.getPassword()}"/>
-            <td th:text="${user.getActive()}"/>
             <td>
                 <form th:action="@{/admin/{id}/edit (id=${user.getId()})}">
                     <button type="submit" >EDIT</button>
@@ -46,10 +44,12 @@
 </table>
 <br/>
 <hr/>
-<form th:action="@{/new}">
+<form th:action="@{/admin/new}">
     <button type="submit">Create new User</button>
-<!--    <p><strong>strong text</strong></p>-->
-<!--    <input name="name_of_field" value="name"/>-->
 </form>
+<form th:action="@{/logout}" th:method="POST">
+    <button type="submit">LOGOUT</button>
+</form>
+
 </body>
 </html>

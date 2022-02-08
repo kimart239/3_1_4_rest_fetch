@@ -15,15 +15,14 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @EnableAutoConfiguration
 public class UserController {
 
 
-    private UserService userService;
-    private RoleService roleService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
     public UserController(UserService userService, RoleService roleService) {
@@ -32,6 +31,11 @@ public class UserController {
     }
 
     //=============================== USER Controller=================================================================
+
+    @GetMapping("/")
+    public String login(){
+        return "login";
+    }
 
     @GetMapping("/login")
     public String loginPage(){
@@ -89,6 +93,6 @@ public class UserController {
     @DeleteMapping("/admin/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.deleteById(id);
-        return "redirect:/";
+        return "redirect:/admin";
     }
 }

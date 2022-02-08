@@ -3,11 +3,11 @@ package ru.kata.spring.boot_security.demo.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.model.Role;
-import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class RoleDaoImp implements RoleDao{
@@ -18,7 +18,7 @@ public class RoleDaoImp implements RoleDao{
     @Override
     public Set<Role> getRoleList() {
         TypedQuery<Role> query = em.createQuery("select r from Role r", Role.class);
-        return (Set<Role>) query.getResultList();
+        return query.getResultList().stream().collect(Collectors.toSet());
     }
 
     @Override

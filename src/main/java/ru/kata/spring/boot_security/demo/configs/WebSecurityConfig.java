@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler,  UserDetailsService userDetailsService) {
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailsService userDetailsService) {
         this.successUserHandler = successUserHandler;
         this.userDetailsService = userDetailsService;
     }
@@ -38,15 +39,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().successHandler(successUserHandler)
                 .loginPage("/login")
+                .loginProcessingUrl("/perform_login")
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
-                .loginProcessingUrl("/perform_login")
                 .permitAll()
                 .and()
                 .logout()
                 .permitAll()
                 // указываем URL логаута
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
                 // указываем URL при удачном логауте
                 .logoutSuccessUrl("/login?logout")
                 .and()

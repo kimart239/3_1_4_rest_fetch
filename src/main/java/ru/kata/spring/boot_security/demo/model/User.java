@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.Collection;
@@ -26,29 +25,23 @@ public class User implements UserDetails {
 
     @Column
     @NotEmpty(message = "not be empty")
-    @Size(min = 1, max = 45, message = "length 1 to 45 signs")
     private String password;
 
-    @Column
-    private boolean active;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user.id"), inverseJoinColumns = @JoinColumn(name = "role.id"))
     private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
 
-    public User(String username, String password, boolean active) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.active = active;
     }
 
-    public User(String username, String password, boolean active, Set<Role> roles) {
+    public User(String username, String password, Set<Role> roles) {
         this.username = username;
         this.password = password;
-        this.active = active;
         this.roles = roles;
     }
 
@@ -76,14 +69,6 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
@@ -94,22 +79,22 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return active;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return active;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return active;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return true;
     }
 
 
@@ -118,9 +103,18 @@ public class User implements UserDetails {
         return roles;
     }
 
-    public static UserDetails fromUser(User user){
+    public static UserDetails fromUser(User user) {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.isEnabled(),
                 user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), user.getRoles());
-}
+    }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }

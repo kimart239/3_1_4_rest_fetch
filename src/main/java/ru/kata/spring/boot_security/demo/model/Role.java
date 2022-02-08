@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 
 @Data
@@ -24,13 +23,15 @@ public class Role implements GrantedAuthority {
     @ManyToMany(mappedBy = "roles")
     private Collection<User> users;
 
-
-    public Role(String role) {
-        this.role = role;
-    }
-
     @Override
     public String getAuthority() {
         return role;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "role='" + role + '\'' +
+                '}';
     }
 }
