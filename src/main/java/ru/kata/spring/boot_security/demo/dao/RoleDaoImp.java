@@ -12,8 +12,13 @@ import java.util.stream.Collectors;
 @Component
 public class RoleDaoImp implements RoleDao{
 
+
+    private final EntityManager em;
+
     @Autowired
-    private EntityManager em;
+    public RoleDaoImp (EntityManager em) {
+        this.em = em;
+    }
 
     @Override
     public Set<Role> getRoleList() {

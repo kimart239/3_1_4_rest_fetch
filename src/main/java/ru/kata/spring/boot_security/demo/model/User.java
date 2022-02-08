@@ -27,7 +27,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "not be empty")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user.id"), inverseJoinColumns = @JoinColumn(name = "role.id"))
     private Set<Role> roles = new HashSet<>();
 
