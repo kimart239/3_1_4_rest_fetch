@@ -28,7 +28,7 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public User findById(long id) {
-        TypedQuery<User> query = em.createQuery("select u from User u where u.id=:id", User.class);
+        TypedQuery<User> query = em.createQuery("select u from User u join fetch u.roles where u.id=:id", User.class);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
@@ -48,7 +48,7 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public User findByUsername(String username) {
-        TypedQuery<User> query = em.createQuery("select u from User u where u.username=:username", User.class);
+        TypedQuery<User> query = em.createQuery("select u from User u join fetch u.roles where u.username=:username", User.class);
         query.setParameter("username", username);
         return query.getSingleResult();
     }
