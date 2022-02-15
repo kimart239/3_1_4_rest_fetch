@@ -6,47 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
     <title>Index of pages</title>
-    <style>
-        table {
-            border-width: medium;
-            width: auto; /* Ширина таблицы */
-            background: white; /* Цвет фона таблицы */
-            color: black; /* Цвет текста */
-            border-spacing: 1px; /* Расстояние между ячейками */
-        }
-        td, th {
-            background: gray; /* Цвет фона ячеек */
-            padding: 5px; /* Поля вокруг текста */
-        }
-    </style>
 </head>
 <body>
+<div class="all-packages-container mx-3">
+    <div class="row">
+        <div class="bg-dark text-white col-12 py-2">
+            <a th:text="${userPage.getUsername()} + '  with Roles: '"/>
+            <a th:each="role : ${userPage.getRoles()}" th:text="(${role.role=='ROLE_ADMIN'}?'ADMIN':
+            (${role.role=='ROLE_USER'}?'USER')) + ' '"/>
+            <a style="float: right" href="/login?logout" methods="POST">LOGOUT</a>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Левый блок -->
+        <div class="col-sm-2 bg-white min-vh-100">
+            <ul class="nav nav-pills flex-column">
+                <br/>
+                <br/>
+                <br/>
+                <th:block th:if="${userPage.isAdmin()}">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin}">Admin</a>
+                    </li>
+                </th:block>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/user}">User</a>
+                </li>
+            </ul>
+        </div>
 
-<table>
 
-    <tr>
-        <th>ID</th>
-        <th>USERNAME</th>
-        <th>PASSWORD</th>
-    </tr>
-        <tr>
-            <td th:text="${userPage.getId()}"></td>
-            <td th:text="${userPage.getUsername()}"></td>
-            <td th:text="${userPage.getPassword()}"></td>
+        <div class="col-sm-10">
+            <h2><strong>User information page</strong></h2>
+            <div class="row">
+                <div class="col border bg-light">
+                    <p><h4><strong>About user</strong></h4></p>
+                </div>
+                <div class="w-100"></div>
+                <div class="col border bg-white">
 
-        </tr>
-</table>
-<br/>
-<hr/>
-<form th:action="@{/logout}" th:method="POST">
-    <button type="submit">LOGOUT</button>
-</form>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>FIRSTNAME</th>
+                            <th>LASTNAME</th>
+                            <th>EMAIL</th>
+                            <th>AGE</th>
+                            <th>USERNAME</th>
+                            <th>ROLES</th>
+                        </tr>
+                        <tr>
+                            <td th:text="${userPage.getId()}"/>
+                            <td th:text="${userPage.getFirstName()}"/>
+                            <td th:text="${userPage.getLastName()}"/>
+                            <td th:text="${userPage.getEmail()}"/>
+                            <td th:text="${userPage.getAge()}"/>
+                            <td th:text="${userPage.getUsername()}"/>
+                            <td>
+                                <div th:each="role : ${userPage.getRoles()}" th:text="(${role.role=='ROLE_ADMIN'}?'ADMIN':
+                                    (${role.role=='ROLE_USER'}?'USER'))"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Вариант 2: Отдельные JS для Popper и Bootstrap -->
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+            integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+            crossorigin="anonymous"></script>
 </body>
 </html>

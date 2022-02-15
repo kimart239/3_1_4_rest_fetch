@@ -21,7 +21,7 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public List<User> userList() {
-        TypedQuery<User> query = em.createQuery("select u from User u", User.class);
+        TypedQuery<User> query = em.createQuery("select distinct u from User u join fetch u.roles", User.class);
 
         return query.getResultList();
     }
@@ -40,6 +40,10 @@ public class UserDaoImp implements UserDao{
     @Override
     public void update (long id, User userUpdated) {
         User userForUpdate = findById(id);
+        userForUpdate.setFirstName(userUpdated.getFirstName());
+        userForUpdate.setLastName(userUpdated.getLastName());
+        userForUpdate.setAge(userUpdated.getAge());
+        userForUpdate.setEmail(userUpdated.getEmail());
         userForUpdate.setUsername(userUpdated.getUsername());
         userForUpdate.setPassword(userUpdated.getPassword());
         userForUpdate.setRoles(userUpdated.getRoles());

@@ -51,40 +51,28 @@ public class UserController {
 
     //===============================ADMIN Controller=================================================================
     @GetMapping("/admin")
-    public String getUsers(Model model) {
+    public String getUsers(Model model, Principal principal) {
         model.addAttribute("userList", userService.userList());
-        return "users";
-    }
-
-    @GetMapping("/admin/new")
-    public String newUser(Model model) {
-        model.addAttribute(new User());
+        model.addAttribute("userName", userService.findByUsername(principal.getName()));
+        model.addAttribute( "userNew",new User());
         Set<Role> roles = roleService.getRoleList();
         model.addAttribute("allRoles", roles);
-        return "new";
+        return "admin";
     }
 
     @PostMapping("/admin/createUser")
-    public String create(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
+    public String create(@ModelAttribute("userNew") @Valid User user, BindingResult bindingResult,
                          @RequestParam ("role_authorities") List<String> role_value) {
         if (bindingResult.hasErrors())
-            return "new";
+            return "admin#add_user";
         user.setRoles(userService.getSetOfRoles(role_value));
         userService.addUser(user);
         return "redirect:/admin";
     }
-    @GetMapping("/admin/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("user", userService.findById(id));
-        model.addAttribute("allRoles", roleService.getRoleList());
-        return "edit";
-    }
 
     @PatchMapping("/admin/{id}")
-    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, @PathVariable("id") int id,
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id,
                          @RequestParam ("role_authorities") List<String> role_value) {
-        if (bindingResult.hasErrors())
-            return "edit";
         user.setRoles(userService.getSetOfRoles(role_value));
         userService.update(id, user);
         return "redirect:/admin";
