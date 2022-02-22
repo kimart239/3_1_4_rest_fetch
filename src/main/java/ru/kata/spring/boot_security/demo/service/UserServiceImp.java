@@ -30,9 +30,9 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional
-    public void addUser(User user) {
+    public User addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userDao.addUser(user);
+        return userDao.addUser(user);
     }
 
     @Override
@@ -53,9 +53,10 @@ public class UserServiceImp implements UserService {
 
     @Override
     @Transactional
-    public void update (long id,User userUpdated) {
+    public User update (long id,User userUpdated) {
         userUpdated.setPassword(passwordEncoder.encode(userUpdated.getPassword()));
-        userDao.update(id, userUpdated);
+
+        return userDao.update(id, userUpdated);
     }
 
     @Override

@@ -63,173 +63,6 @@
                                 </tr>
                                 </thead>
                                 <tbody id="usersTable">
-                                    <!--                                    <tr>-->
-                                    <!--                                        <td th:text="${user.getId()}"/>-->
-                                    <!--                                        <td th:text="${user.getFirstName()}"/>-->
-                                    <!--                                        <td th:text="${user.getLastName()}"/>-->
-                                    <!--                                        <td th:text="${user.getEmail()}"/>-->
-                                    <!--                                        <td th:text="${user.getAge()}"/>-->
-                                    <!--                                        <td th:text="${user.getUsername()}"/>-->
-                                    <!--                                        <td>-->
-                                    <!--                                            <div th:each="role : ${user.getRoles()}" th:text="(${role.role=='ROLE_ADMIN'}?'ADMIN':-->
-                                    <!--                                    (${role.role=='ROLE_USER'}?'USER'))"/>-->
-                                    <!--                                        </td>-->
-                                    <!--                                        <td>-->
-                                    <!--                                            <button type="button" class="btn btn-primary" data-toggle="modal"-->
-                                    <!--                                                    th:data-target="${'#edit' + user.getId()}">EDIT-->
-                                    <!--                                            </button>-->
-
-<!--                                                                                <div class="modal fade" th:id="${'edit' + user.getId()}" tabindex="-1"-->
-<!--                                                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--                                                                                    <div class="modal-dialog">-->
-<!--                                                                                        <div class="modal-content">-->
-<!--                                                                                            <div class="modal-header">-->
-<!--                                                                                                <h3 class="modal-title" id="exampleModalLabel">Edit-->
-<!--                                                                                                    user</h3>-->
-<!--                                                                                                <button type="button" class="close" data-dismiss="modal"-->
-<!--                                                                                                        aria-label="Close">-->
-<!--                                                                                                    <span aria-hidden="true">&times;</span>-->
-<!--                                                                                                </button>-->
-<!--                                                                                            </div>-->
-<!--                                                                                            <div class="modal-body text-center">-->
-<!--                                                                                                <form th:method="PATCH"-->
-<!--                                                                                                      th:action="@{/admin/{id} (id=${user.getId()})}"-->
-<!--                                                                                                      th:object="${user}">-->
-<!--                                                                                                    <label for="firstName"><strong>First-->
-<!--                                                                                                        name</strong></label>-->
-<!--                                                                                                    <input class="d-inline-block w-100" type="text"-->
-<!--                                                                                                           name="firstName" th:value="${user.firstName}"-->
-<!--                                                                                                           id="firstName"/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <br/><label for="lastName"><strong>Last-->
-<!--                                                                                                    name</strong></label>-->
-<!--                                                                                                    <input class="d-inline-block w-100" type="text"-->
-<!--                                                                                                           name="lastName" th:value="${user.lastName}"-->
-<!--                                                                                                           id="lastName"/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <br/><label for="username"><strong>Age</strong></label>-->
-<!--                                                                                                    <input class="d-inline-block w-100" type="number"-->
-<!--                                                                                                           name="age" th:value="${user.age}"-->
-<!--                                                                                                           id="age"/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <br/><label-->
-<!--                                                                                                        for="username"><strong>Email</strong></label>-->
-<!--                                                                                                    <input class="d-inline-block w-100" type="text"-->
-<!--                                                                                                           name="email" th:value="${user.email}"-->
-<!--                                                                                                           id="email"/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <label for="username"><strong>Username</strong></label>-->
-<!--                                                                                                    <input class="d-inline-block w-100" type="text"-->
-<!--                                                                                                           name="username" th:value="${user.username}"-->
-<!--                                                                                                           id="username"/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <label for="password"><strong>Password</strong></label>-->
-<!--                                                                                                    <input class="d-inline-block w-100" type="password"-->
-<!--                                                                                                           name="password" value=""-->
-<!--                                                                                                           id="password"/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <strong>Roles</strong>-->
-<!--                                                                                                    <select class="d-inline-block w-100"-->
-<!--                                                                                                            name="role_authorities" multiple>-->
-<!--                                                                                                        <option value="ROLE_ADMIN">ADMIN</option>-->
-<!--                                                                                                        <option value="ROLE_USER">USER</option>-->
-<!--                                                                                                    </select>-->
-<!--                                                                                                    <br/>-->
-<!--                                                                                                    <div class="modal-footer">-->
-<!--                                                                                                        <button type="button"-->
-<!--                                                                                                                class="btn btn-lg mt-3 btn-secondary"-->
-<!--                                                                                                                data-dismiss="modal">Close-->
-<!--                                                                                                        </button>-->
-<!--                                                                                                        <input class="btn btn-lg btn-primary mt-3"-->
-<!--                                                                                                               type="submit"-->
-<!--                                                                                                               value="Edit"/>-->
-<!--                                                                                                    </div>-->
-<!--                                                                                                </form>-->
-<!--                                                                                            </div>-->
-<!--                                                                                        </div>-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
-                                    <!--                                        </td>-->
-                                    <!--                                        <td>-->
-                                    <!--                                            <button type="button" class="btn btn-danger" data-toggle="modal"-->
-                                    <!--                                                    th:data-target="${'#delete' + user.getId()}">DELETE-->
-                                    <!--                                            </button>-->
-                                    <!--                                            <div class="modal fade" th:id="${'delete' + user.getId()}" tabindex="-1"-->
-                                    <!--                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-                                    <!--                                                <div class="modal-dialog">-->
-                                    <!--                                                    <div class="modal-content">-->
-                                    <!--                                                        <div class="modal-header">-->
-                                    <!--                                                            <h3 class="modal-title" id="exampleModalLabel">Delete-->
-                                    <!--                                                                user</h3>-->
-                                    <!--                                                            <button type="button" class="close" data-dismiss="modal"-->
-                                    <!--                                                                    aria-label="Close">-->
-                                    <!--                                                                <span aria-hidden="true">&times;</span>-->
-                                    <!--                                                            </button>-->
-                                    <!--                                                        </div>-->
-                                    <!--                                                        <div class="modal-body text-center">-->
-                                    <!--                                                            <form th:method="DELETE"-->
-                                    <!--                                                                  th:action="@{/admin/{id} (id=${user.getId()})}"-->
-                                    <!--                                                                  th:object="${user}">-->
-                                    <!--                                                                <label for="firstName"><strong>First-->
-                                    <!--                                                                    name</strong></label>-->
-                                    <!--                                                                <input class="d-inline-block w-100" type="text"-->
-                                    <!--                                                                       name="firstName" th:value="${user.firstName}"-->
-                                    <!--                                                                       id="firstName" readonly/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <br/><label for="lastName"><strong>Last-->
-                                    <!--                                                                name</strong></label>-->
-                                    <!--                                                                <input class="d-inline-block w-100" type="text"-->
-                                    <!--                                                                       name="lastName" th:value="${user.lastName}"-->
-                                    <!--                                                                       id="lastName" readonly/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <label for="username"><strong>Age</strong></label>-->
-                                    <!--                                                                <input class="d-inline-block w-100" type="number"-->
-                                    <!--                                                                       name="age" th:value="${user.age}"-->
-                                    <!--                                                                       id="age" readonly/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <label for="username"><strong>Email</strong></label>-->
-                                    <!--                                                                <input class="d-inline-block w-100" type="text"-->
-                                    <!--                                                                       name="email" th:value="${user.email}"-->
-                                    <!--                                                                       id="email" readonly/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <label for="username"><strong>Username</strong></label>-->
-                                    <!--                                                                <input class="d-inline-block w-100" type="text"-->
-                                    <!--                                                                       name="username" th:value="${user.username}"-->
-                                    <!--                                                                       id="username" readonly/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <strong>Roles</strong>-->
-                                    <!--                                                                <select class="d-inline-block w-100"-->
-                                    <!--                                                                        name="role_authorities" size="2" multiple>-->
-                                    <!--                                                                    <option th:each="role : ${user.getRoles()}"-->
-                                    <!--                                                                            th:value="${role.role}"-->
-                                    <!--                                                                            th:text="(${role.role=='ROLE_ADMIN'}?'ADMIN':-->
-                                    <!--                                                                            (${role.role=='ROLE_USER'}?'USER'))">-->
-                                    <!--                                                                    </option>-->
-                                    <!--                                                                </select>-->
-                                    <!--                                                                <br/>-->
-                                    <!--                                                                <div class="modal-footer">-->
-                                    <!--                                                                    <button type="button"-->
-                                    <!--                                                                            class="btn btn-lg mt-3 btn-secondary"-->
-                                    <!--                                                                            data-dismiss="modal">Close-->
-                                    <!--                                                                    </button>-->
-                                    <!--                                                                    <input class="btn btn-lg btn-danger mt-3"-->
-                                    <!--                                                                           type="submit"-->
-                                    <!--                                                                           value="Delete"/>-->
-                                    <!--                                                                </div>-->
-                                    <!--                                                            </form>-->
-                                    <!--                                                        </div>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                </div>-->
-                                    <!--                                            </div>-->
-                                    <!--                                        </td>-->
-                                    <!--                                    </tr>-->
                                 </tbody>
                             </table>
                         </div>
@@ -247,47 +80,30 @@
                         <div class="col-4"></div>
                         <div class="col-3 bg-white">
                             <br/>
-                            <form th:method="POST" th:action="@{/admin/createUser}" th:object="${userNew}">
+                            <form id="addNewUser">
                                 <label for="firstName"><strong>First name</strong></label>
-                                <input class="d-inline-block w-100" type="text" name="firstName" th:field="*{firstName}"
-                                       id="firstName"/>
-                                <div style="color: red" th:if="${#fields.hasErrors('firstName')}"
-                                     th:errors="*{firstName}"></div>
+                                <input class="d-inline-block w-100" type="text" name="firstName" id="firstName"/>
                                 <br/>
                                 <br/><label for="lastName"><strong>Last name</strong></label>
-                                <input class="d-inline-block w-100" type="text" name="lastName" th:field="*{lastName}"
-                                       id="lastName"/>
-                                <div style="color: red" th:if="${#fields.hasErrors('lastName')}"
-                                     th:errors="*{lastName}"></div>
+                                <input class="d-inline-block w-100" type="text" name="lastName" id="lastName"/>
                                 <br/>
                                 <br/><label for="username"><strong>Age</strong></label>
-                                <input class="d-inline-block w-100" type="number" name="age" th:field="*{age}"
-                                       id="age"/>
-                                <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+                                <input class="d-inline-block w-100" type="number" name="age" id="age"/>
                                 <br/>
                                 <br/><label for="username"><strong>Email</strong></label>
-                                <input class="d-inline-block w-100" type="text" name="email" th:field="*{email}"
-                                       id="email"/>
-                                <div style="color: red" th:if="${#fields.hasErrors('email')}"
-                                     th:errors="*{email}"></div>
+                                <input class="d-inline-block w-100" type="text" name="email" id="email"/>
                                 <br/>
                                 <br/>
                                 <label for="username"><strong>Username</strong></label>
-                                <input class="d-inline-block w-100" type="text" name="name" th:field="*{username}"
-                                       id="username"/>
-                                <div style="color: red" th:if="${#fields.hasErrors('username')}"
-                                     th:errors="*{username}"></div>
+                                <input class="d-inline-block w-100" type="text" name="name" id="username"/>
                                 <br/>
                                 <br/>
                                 <label for="password"><strong>Password</strong></label>
-                                <input class="d-inline-block w-100" type="text" name="password" th:field="*{password}"
-                                       id="password"/>
-                                <div style="color: red" th:if="${#fields.hasErrors('password')}"
-                                     th:errors="*{password}"></div>
+                                <input class="d-inline-block w-100" type="text" name="password" id="password"/>
                                 <br/>
                                 <br/>
                                 <strong>Roles</strong>
-                                <select class="d-inline-block w-100" name="role_authorities" size="2" multiple>
+                                <select class="d-inline-block w-100" id="newRole" name="role_authorities" size="2" multiple>
                                     <option value="ROLE_ADMIN">ADMIN</option>
                                     <option value="ROLE_USER">USER</option>
                                 </select>
@@ -315,10 +131,12 @@
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
         crossorigin="anonymous"></script>
 
+
 <script src="/userHeadInfo.js"></script>
 <script src="/userList.js"></script>
-<script src="/modalWindow.js"></script>
-<script src="/test1.js"/>
+<script src="/editModal.js"></script>
+<script src="/deleteModal.js"></script>
+<script src="/add.js"></script>
 
 </body>
 </html>

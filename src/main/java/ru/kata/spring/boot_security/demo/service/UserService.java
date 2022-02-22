@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Set;
 
 public interface UserService {
-    void addUser(User user);
+    User addUser(User user);
     List<User> userList();
     User findById(long id);
     void deleteById(long id);
-    void update (long id,User userUpdated);
+    User update (long id,User userUpdated);
     User findByUsername(String username);
     Set<Role> getSetOfRoles(List<String> role_string);
 

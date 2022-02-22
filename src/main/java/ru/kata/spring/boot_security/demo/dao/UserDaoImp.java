@@ -15,8 +15,9 @@ public class UserDaoImp implements UserDao{
     private EntityManager em;
 
     @Override
-    public void addUser(User user) {
+    public User addUser(User user) {
         em.persist(user);
+        return findByUsername(user.getUsername());
     }
 
     @Override
@@ -38,7 +39,7 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
-    public void update (long id, User userUpdated) {
+    public User update (long id, User userUpdated) {
         User userForUpdate = findById(id);
         userForUpdate.setFirstName(userUpdated.getFirstName());
         userForUpdate.setLastName(userUpdated.getLastName());
@@ -48,6 +49,7 @@ public class UserDaoImp implements UserDao{
         userForUpdate.setPassword(userUpdated.getPassword());
         userForUpdate.setRoles(userUpdated.getRoles());
         em.merge(userForUpdate);
+        return userForUpdate;
     }
 
     @Override
