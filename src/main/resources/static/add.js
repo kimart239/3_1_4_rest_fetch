@@ -57,5 +57,6 @@ addUser.addEventListener('submit', (ev => {
             window.location.replace("http://localhost:8080/admin")
 
         })
+
 }))
 
